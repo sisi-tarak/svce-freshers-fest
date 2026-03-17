@@ -1,0 +1,4 @@
+/.claude*
+/.claude_cache*
+
+/freshers-fest/.env.local

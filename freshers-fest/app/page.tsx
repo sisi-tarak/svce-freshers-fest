@@ -1,6 +1,6 @@
 import Navbar from '@/components/landing/Navbar'
 import Hero from '@/components/landing/Hero'
-import MilestonePricing from '@/components/landing/MilestonePricing'
+import EventHighlights from '@/components/landing/EventHighlights'
 import EventGrid from '@/components/landing/EventGrid'
 import HackathonSection from '@/components/landing/HackathonSection'
 import Schedule from '@/components/landing/Schedule'
@@ -18,7 +18,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <MilestonePricing />
+        <EventHighlights />
         <EventGrid />
         <HackathonSection />
         <Schedule />

@@ -3,18 +3,21 @@
 import { useEffect, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useCountdown } from '@/hooks/useCountdown'
-import { EVENT_DATE } from '@/lib/constants'
-import Button from '@/components/ui/Button'
+import { EVENT_DATE, TICKET_PRICE } from '@/lib/constants'
+import { ArrowRight } from 'lucide-react'
 
 function CountdownBox({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center">
-      <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl bg-bg-secondary border border-border-default flex items-center justify-center glow-orange-subtle">
-        <span className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-text-primary">
+      <div
+        className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl border flex items-center justify-center glow-orange-subtle"
+        style={{ backgroundColor: 'var(--bg-secondary)', borderColor: 'var(--border-default)' }}
+      >
+        <span className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold" style={{ color: 'var(--text-primary)' }}>
           {String(value).padStart(2, '0')}
         </span>
       </div>
-      <span className="text-xs sm:text-sm text-text-muted mt-2 font-medium uppercase tracking-wider">
+      <span className="text-xs sm:text-sm mt-2 font-medium uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>
         {label}
       </span>
     </div>
@@ -36,7 +39,7 @@ function AnimatedCounter({ target, label }: { target: string; label: string }) {
       <div className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold gradient-text-orange">
         {target}
       </div>
-      <div className="text-xs sm:text-sm text-text-muted mt-1">{label}</div>
+      <div className="text-xs sm:text-sm mt-1" style={{ color: 'var(--text-muted)' }}>{label}</div>
     </motion.div>
   )
 }
@@ -72,7 +75,7 @@ export default function Hero() {
         vy: (Math.random() - 0.5) * 0.3,
         size: Math.random() * 3 + 1,
         opacity: Math.random() * 0.15 + 0.05,
-        shape: Math.floor(Math.random() * 3), // 0=circle, 1=triangle, 2=hex
+        shape: Math.floor(Math.random() * 3),
       })
     }
 
@@ -134,7 +137,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }}>
       {/* Particle Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 z-0" />
 
@@ -142,7 +145,12 @@ export default function Hero() {
       <div className="absolute inset-0 dot-grid z-[1]" />
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bg-primary/50 to-bg-primary z-[2]" />
+      <div
+        className="absolute inset-0 z-[2]"
+        style={{
+          background: `linear-gradient(to bottom, transparent, var(--bg-primary) 50%, var(--bg-primary))`,
+        }}
+      />
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pt-20">
@@ -176,7 +184,8 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7 }}
-          className="text-lg sm:text-xl md:text-2xl text-text-secondary mb-2 font-heading"
+          className="text-lg sm:text-xl md:text-2xl mb-2 font-heading"
+          style={{ color: 'var(--text-secondary)' }}
         >
           Where SVCE Proves It Is Technical. Cultural. Total.
         </motion.p>
@@ -184,9 +193,10 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="text-text-muted mb-8"
+          className="mb-8"
+          style={{ color: 'var(--text-muted)' }}
         >
-          April 10–11, 2026 | SVCE Campus, Tirupati
+          April 10-11, 2026 | SVCE Campus, Tirupati
         </motion.p>
 
         {/* Countdown */}
@@ -197,27 +207,28 @@ export default function Hero() {
           className="flex items-center justify-center gap-3 sm:gap-5 md:gap-8 mb-10"
         >
           <CountdownBox value={countdown.days} label="Days" />
-          <span className="text-2xl text-text-muted font-bold mt-[-20px]">:</span>
+          <span className="text-2xl font-bold mt-[-20px]" style={{ color: 'var(--text-muted)' }}>:</span>
           <CountdownBox value={countdown.hours} label="Hours" />
-          <span className="text-2xl text-text-muted font-bold mt-[-20px]">:</span>
+          <span className="text-2xl font-bold mt-[-20px]" style={{ color: 'var(--text-muted)' }}>:</span>
           <CountdownBox value={countdown.minutes} label="Minutes" />
-          <span className="text-2xl text-text-muted font-bold mt-[-20px]">:</span>
+          <span className="text-2xl font-bold mt-[-20px]" style={{ color: 'var(--text-muted)' }}>:</span>
           <CountdownBox value={countdown.seconds} label="Seconds" />
         </motion.div>
 
-        {/* CTA Buttons */}
+        {/* Single CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+          className="flex items-center justify-center mb-16"
         >
-          <Button size="lg" glow onClick={() => scrollTo('register')}>
-            Register Now — External ₹199
-          </Button>
-          <Button size="lg" variant="cyan" onClick={() => scrollTo('register')}>
-            SVCE Students — Register Free
-          </Button>
+          <button
+            onClick={() => scrollTo('register')}
+            className="flex items-center gap-2.5 px-8 py-4 rounded-full gradient-cta text-white text-lg font-heading font-semibold hover:opacity-90 transition-all cursor-pointer group pulse-glow"
+          >
+            Register Now — ₹{TICKET_PRICE}
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
         </motion.div>
 
         {/* Stats Strip */}
@@ -244,7 +255,8 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-text-muted flex items-start justify-center p-1.5"
+          className="w-6 h-10 rounded-full border-2 flex items-start justify-center p-1.5"
+          style={{ borderColor: 'var(--text-muted)' }}
         >
           <div className="w-1.5 h-1.5 rounded-full bg-accent-orange" />
         </motion.div>

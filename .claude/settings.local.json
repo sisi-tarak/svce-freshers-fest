@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir=false --import-alias=\"@/*\" --use-npm)",
+      "Bash(npx create-next-app@latest freshers-fest --typescript --tailwind --eslint --app --src-dir=false --import-alias=\"@/*\" --use-npm)",
+      "Bash(npx create-next-app@latest freshers-fest --typescript --tailwind --eslint --app --src-dir=false --import-alias=\"@/*\" --use-npm --no-turbopack 2)",
+      "Bash(1:*)",
+      "Bash(npx create-next-app@latest freshers-fest --typescript --tailwind --eslint --app --import-alias=\"@/*\" --use-npm)",
+      "Bash(printf 'n\\\\nn\\\\nn\\\\n')",
+      "Bash(npx create-next-app@latest freshers-fest --ts --tailwind --eslint --app --import-alias=\"@/*\" --use-npm)",
+      "Bash(mkdir -p \"/c/Users/sisin/Downloads/Freshers Fest/freshers-fest\")",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)"
+    ]
+  }
+}

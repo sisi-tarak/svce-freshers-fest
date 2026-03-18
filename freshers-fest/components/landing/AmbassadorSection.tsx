@@ -20,7 +20,7 @@ export default function AmbassadorSection() {
       <div className="max-w-4xl mx-auto">
         <SectionHeading
           title="Become a Campus Ambassador"
-          subtitle="Represent Freshers Fest at your college. Bring 10+ students. Get rewarded."
+          subtitle="1 ambassador per college. Every 10 registrations using your code = 1 FREE PASS."
         />
 
         <motion.div
@@ -58,8 +58,8 @@ export default function AmbassadorSection() {
               Apply as Ambassador
             </Button>
             <p className="text-text-muted text-xs mt-4">
-              Each ambassador gets a unique referral code. Share it with external students.
-              Track your impact in real-time.
+              Each ambassador gets a unique referral code. Students must register WITH your code for it to count.
+              Have a referral code? Enter it during registration on Ticket9.
             </p>
           </div>
         </motion.div>

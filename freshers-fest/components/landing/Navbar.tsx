@@ -137,7 +137,7 @@ export default function Navbar() {
                 onClick={() => scrollTo('register')}
                 className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-full gradient-cta text-white text-sm font-heading font-semibold hover:opacity-90 transition-all duration-300 hover:gap-2.5 cursor-pointer group"
               >
-                Register
+                Register via Ticket9
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </button>
 
@@ -218,7 +218,7 @@ export default function Navbar() {
               onClick={() => scrollTo('register')}
               className="mt-4 px-8 py-3 rounded-full gradient-cta text-white text-lg font-heading font-semibold cursor-pointer"
             >
-              Register Now — ₹199
+              Register via Ticket9 — ₹200
             </motion.button>
 
             {/* Mobile theme toggle */}

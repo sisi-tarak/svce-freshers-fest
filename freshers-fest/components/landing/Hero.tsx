@@ -163,7 +163,7 @@ export default function Hero() {
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-orange/10 border border-accent-orange/20 text-accent-orange text-sm font-medium">
             <span className="w-2 h-2 rounded-full bg-accent-orange animate-pulse" />
-            Precious First — GDG Team @ SVCE Tirupati
+            PRECIOUS FIRST — GDG Team @ SVCE Tirupati
           </span>
         </motion.div>
 
@@ -226,7 +226,7 @@ export default function Hero() {
             onClick={() => scrollTo('register')}
             className="flex items-center gap-2.5 px-8 py-4 rounded-full gradient-cta text-white text-lg font-heading font-semibold hover:opacity-90 transition-all cursor-pointer group pulse-glow"
           >
-            Register Now — ₹{TICKET_PRICE}
+            Register via Ticket9 — ₹{TICKET_PRICE}
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
         </motion.div>
@@ -239,9 +239,9 @@ export default function Hero() {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 max-w-3xl mx-auto"
         >
           <AnimatedCounter target="2000+" label="SVCE Students" />
-          <AnimatedCounter target="500-700" label="External Target" />
+          <AnimatedCounter target="1,000–1,500" label="External Target" />
+          <AnimatedCounter target="150+" label="Organizers" />
           <AnimatedCounter target="24 HRS" label="Hackathon" />
-          <AnimatedCounter target="9" label="Departments" />
         </motion.div>
       </div>
 

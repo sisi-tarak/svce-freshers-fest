@@ -10,7 +10,22 @@
       "Bash(npx create-next-app@latest freshers-fest --ts --tailwind --eslint --app --import-alias=\"@/*\" --use-npm)",
       "Bash(mkdir -p \"/c/Users/sisin/Downloads/Freshers Fest/freshers-fest\")",
       "Bash(npm init:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Read(//c/Users/sisin/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/dc4f4166-4075-4186-ad5e-3cbe05c7d4b8/6aaed314-f135-4d25-85c3-12f23622324f/skills/docx/**)",
+      "Bash(pandoc \"C:\\\\Users\\\\sisin\\\\Downloads\\\\SVCE_FreshersFest_EventPlan_v5.docx\" -o output.md --track-changes=all)",
+      "Bash(python scripts/office/unpack.py \"C:\\\\Users\\\\sisin\\\\Downloads\\\\SVCE_FreshersFest_EventPlan_v5.docx\" unpacked/)",
+      "Bash(python3 \"C:\\\\Users\\\\sisin\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\dc4f4166-4075-4186-ad5e-3cbe05c7d4b8\\\\6aaed314-f135-4d25-85c3-12f23622324f\\\\skills\\\\docx\\\\scripts\\\\office\\\\unpack.py\" \"C:\\\\Users\\\\sisin\\\\Downloads\\\\SVCE_FreshersFest_EventPlan_v5.docx\" /tmp/docx_unpacked/)",
+      "Bash(where python:*)",
+      "Bash(where python3:*)",
+      "Bash(where py:*)",
+      "Read(//c/Users/sisin/AppData/Local/Programs/**)",
+      "Bash(ls /c/Python*/python.exe)",
+      "Read(//c/Users/sisin/AppData/Local/Microsoft/WindowsApps/**)",
+      "Bash(/c/Users/sisin/AppData/Local/Microsoft/WindowsApps/python3.exe \"C:\\\\Users\\\\sisin\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\dc4f4166-4075-4186-ad5e-3cbe05c7d4b8\\\\6aaed314-f135-4d25-85c3-12f23622324f\\\\skills\\\\docx\\\\scripts\\\\office\\\\unpack.py\" \"C:\\\\Users\\\\sisin\\\\Downloads\\\\SVCE_FreshersFest_EventPlan_v5.docx\" /tmp/docx_unpacked/)",
+      "Bash(SCRIPTS_DIR=\"/c/Users/sisin/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/dc4f4166-4075-4186-ad5e-3cbe05c7d4b8/6aaed314-f135-4d25-85c3-12f23622324f/skills/docx/scripts/office\")",
+      "Bash(/c/Users/sisin/AppData/Local/Microsoft/WindowsApps/python3.exe \"$SCRIPTS_DIR/unpack.py\" \"/c/Users/sisin/Downloads/SVCE_FreshersFest_EventPlan_v5.docx\" /tmp/docx_unpacked/)",
+      "Bash(/c/Users/sisin/AppData/Local/Microsoft/WindowsApps/python3.exe scripts/office/unpack.py \"/c/Users/sisin/Downloads/SVCE_FreshersFest_EventPlan_v5.docx\" /tmp/docx_unpacked/)",
+      "Bash(/c/Users/sisin/AppData/Local/Microsoft/WindowsApps/python3.exe -m pip install defusedxml)"
     ]
   }
 }

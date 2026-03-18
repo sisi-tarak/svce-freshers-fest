@@ -8,6 +8,7 @@ import Speakers from '@/components/landing/Speakers'
 import Sponsorship from '@/components/landing/Sponsorship'
 import AmbassadorSection from '@/components/landing/AmbassadorSection'
 import SocialContest from '@/components/landing/SocialContest'
+import TeamSection from '@/components/landing/TeamSection'
 import Registration from '@/components/landing/Registration'
 import FAQ from '@/components/landing/FAQ'
 import Footer from '@/components/landing/Footer'
@@ -26,6 +27,7 @@ export default function Home() {
         <Sponsorship />
         <AmbassadorSection />
         <SocialContest />
+        <TeamSection />
         <Registration />
         <FAQ />
       </main>

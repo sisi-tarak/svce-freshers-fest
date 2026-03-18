@@ -23,7 +23,7 @@ export default function HackathonSection() {
         />
 
         {/* Domain Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 mb-16">
           {HACKATHON_DOMAINS.map((domain, i) => (
             <motion.div
               key={domain.number}
@@ -136,8 +136,11 @@ export default function HackathonSection() {
         >
           <div className="flex items-center justify-center gap-4 text-text-secondary">
             <Users className="w-5 h-5" />
-            <span>Team size: 2–5 members | Cross-college teams allowed</span>
+            <span>Team size: 2–5 members | Cross-college teams allowed | ~500 slots (limited)</span>
           </div>
+          <p className="text-text-muted text-sm">
+            Hackathon fee: ₹100 extra for all participants. Judged by Startup Founders + Faculty Panel.
+          </p>
           <p className="text-text-muted text-sm">
             Prizes: Cash prizes + trophies + internship offers from Gold sponsors
           </p>

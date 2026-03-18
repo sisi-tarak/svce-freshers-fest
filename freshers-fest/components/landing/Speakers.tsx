@@ -57,7 +57,7 @@ export default function Speakers() {
           className="text-center mt-8 flex items-center justify-center gap-2 text-text-muted text-sm"
         >
           <MessageCircle className="w-4 h-4" />
-          Students ask questions directly — raw, unfiltered. No moderator.
+          Live Q&A — students ask questions directly. Raw, unfiltered.
         </motion.div>
       </div>
     </section>

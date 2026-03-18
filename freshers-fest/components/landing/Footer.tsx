@@ -10,13 +10,13 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <h3 className="font-heading font-bold text-xl gradient-text-orange mb-3">
-              FRESHERS FEST 2026
+              PRECIOUS FIRST — SVCE Freshers Fest 2026
             </h3>
-            <p className="text-text-muted text-sm mb-1">Precious First</p>
             <p className="text-text-secondary text-sm leading-relaxed">
               Where SVCE Proves It Is Technical. Cultural. Total.
             </p>
-            <p className="text-text-muted text-xs mt-3">#PreciousFirstSVCE</p>
+            <p className="text-text-muted text-xs mt-2">Overall Event Lead: Sisindri Singamsetti</p>
+            <p className="text-text-muted text-xs mt-1">#SVCEFreshersFest2026</p>
           </div>
 
           {/* Contact */}
@@ -54,7 +54,7 @@ export default function Footer() {
             <h4 className="font-heading font-semibold text-text-primary mb-4">Follow Us</h4>
             <div className="flex gap-3 mb-6">
               <a
-                href="https://instagram.com/SVCE_GDG"
+                href="https://instagram.com/SVCETirupati"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-bg-tertiary border border-border-default flex items-center justify-center text-text-secondary hover:text-accent-orange hover:border-accent-orange/30 transition-all"
@@ -101,7 +101,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-10 pt-6 border-t border-border-default flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-text-muted text-xs">
-            © 2026 Freshers Fest — SVCE Tirupati. All rights reserved.
+            © 2026 PRECIOUS FIRST — SVCE Freshers Fest 2026. Organized by GDG Team, SVCE Tirupati.
           </p>
           <p className="text-text-muted text-xs flex items-center gap-1">
             Built with <Heart className="w-3 h-3 text-accent-orange" /> by GDG Team @ SVCE Tirupati

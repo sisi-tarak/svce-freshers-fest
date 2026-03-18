@@ -16,24 +16,24 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Freshers Fest 2026 | Precious First — SVCE Tirupati',
+  title: 'PRECIOUS FIRST — SVCE Freshers Fest 2026 | April 10-11 | SVCE Tirupati',
   description:
-    'The biggest fresher event at SVCE Tirupati. 24-hour hackathon, workshops, exhibitions, startup showcase, musical evening. April 10-11, 2026. Tech Meets Culture.',
+    'SVCE Freshers Fest 2026 — Precious First. 24-Hour Hackathon, Workshops, Startup Showcase, Musical Evening & more. April 10-11, 2026. SVCE Tirupati. Register now at Rs. 200 via Ticket9.',
   keywords: [
-    'Freshers Fest', 'SVCE Tirupati', 'college fest', 'hackathon',
-    'GDG SVCE', 'Precious First', 'tech fest 2026',
+    'SVCE Freshers Fest 2026', 'Precious First', 'SVCE Tirupati', 'GDG SVCE',
+    'hackathon Tirupati', 'freshers fest 2026', 'SVCEFreshersFest2026', 'Ticket9',
   ],
   openGraph: {
-    title: 'Freshers Fest 2026 — Precious First | SVCE Tirupati',
-    description: 'Where SVCE Proves It Is Technical. Cultural. Total. April 10-11, 2026.',
+    title: 'PRECIOUS FIRST — SVCE Freshers Fest 2026',
+    description: '24-Hour Hackathon | Workshops | Success Stories | Startup Showcase | Musical Evening. April 10-11, 2026. SVCE Tirupati. Register now.',
     type: 'website',
     locale: 'en_IN',
-    siteName: 'Freshers Fest 2026',
+    siteName: 'SVCE Freshers Fest 2026',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Freshers Fest 2026 — Precious First',
-    description: 'Where SVCE Proves It Is Technical. Cultural. Total. April 10-11, 2026.',
+    title: 'PRECIOUS FIRST — SVCE Freshers Fest 2026',
+    description: '24-Hour Hackathon | Workshops | Success Stories | Startup Showcase | Musical Evening. April 10-11, 2026. SVCE Tirupati.',
   },
   robots: { index: true, follow: true },
 }

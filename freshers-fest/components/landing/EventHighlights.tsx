@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useCallback } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { EVENT_HIGHLIGHTS } from '@/lib/constants'
 import { Ticket, Calendar, ArrowRight } from 'lucide-react'
@@ -61,8 +61,8 @@ function CountUpNumber({ target, suffix }: { target: string; suffix: string }) {
   const numericTarget = parseInt(target.replace(/[^0-9]/g, ''))
 
   // Simple count-up
-  useState(() => {
-    if (isNaN(numericTarget)) return
+  useEffect(() => {
+    if (isNaN(numericTarget) || !isInView) return
     const duration = 1500
     const steps = 30
     const increment = numericTarget / steps
@@ -76,7 +76,8 @@ function CountUpNumber({ target, suffix }: { target: string; suffix: string }) {
         setCount(Math.floor(current))
       }
     }, duration / steps)
-  })
+    return () => clearInterval(timer)
+  }, [isInView, numericTarget])
 
   const displayValue = isNaN(numericTarget) ? target : isInView ? count : 0
 
@@ -168,10 +169,13 @@ export default function EventHighlights() {
               </div>
               <div>
                 <h3 className="font-heading font-bold text-xl" style={{ color: 'var(--text-primary)' }}>
-                  One Ticket — ₹199 for Everyone
+                  One Ticket — ₹200 | Register via Ticket9
                 </h3>
                 <p className="text-sm mt-0.5" style={{ color: 'var(--text-secondary)' }}>
-                  Hackathon + Workshops + Exhibitions + Musical Evening + All Meals
+                  Workshops + Exhibitions + Musical Evening + All Meals. Hackathon: +₹100 add-on.
+                </p>
+                <p className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>
+                  Register → Pay via Ticket9 → QR code via WhatsApp &amp; Email → Show at gate
                 </p>
               </div>
             </div>
@@ -187,7 +191,7 @@ export default function EventHighlights() {
                 onClick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}
                 className="flex items-center gap-2 px-5 py-2.5 rounded-full gradient-cta text-white font-heading font-semibold text-sm hover:opacity-90 transition-all cursor-pointer group"
               >
-                Get Ticket
+                Register via Ticket9
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </button>
             </div>

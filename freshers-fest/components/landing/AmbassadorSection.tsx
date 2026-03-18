@@ -16,8 +16,9 @@ export default function AmbassadorSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="ambassador" className="section-padding bg-bg-secondary" ref={ref}>
-      <div className="max-w-4xl mx-auto">
+    <section id="ambassador" className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--bg-secondary)' }} ref={ref}>
+      <div className="absolute top-20 -right-20 w-72 h-72 rounded-full bg-accent-orange/5 blur-3xl pointer-events-none" />
+      <div className="max-w-4xl mx-auto relative z-10">
         <SectionHeading
           title="Become a Campus Ambassador"
           subtitle="1 ambassador per college. Every 10 registrations using your code = 1 FREE PASS."

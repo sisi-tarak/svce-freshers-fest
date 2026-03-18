@@ -12,9 +12,10 @@ export default function HackathonSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="hackathon" className="section-padding bg-bg-secondary relative overflow-hidden" ref={ref}>
-      {/* Cyan gradient accent */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent-cyan/5 rounded-full blur-3xl" />
+    <section id="hackathon" className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--bg-secondary)' }} ref={ref}>
+      {/* Gradient accent */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent-orange/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 -left-20 w-72 h-72 bg-accent-orange/3 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading
@@ -78,7 +79,8 @@ export default function HackathonSection() {
                     transition={{ duration: 1, delay: 0.7 }}
                     className="h-full rounded-full"
                     style={{
-                      background: `linear-gradient(90deg, #00E5FF, #00E5FF${Math.round(criteria.percentage * 2.55).toString(16).padStart(2, '0')})`,
+                      background: `linear-gradient(90deg, var(--accent-secondary), var(--accent-secondary))`,
+                      opacity: criteria.percentage / 25,
                     }}
                   />
                 </div>

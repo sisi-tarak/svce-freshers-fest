@@ -11,11 +11,14 @@ export default function Registration() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="register" className="section-padding" style={{ backgroundColor: 'var(--bg-primary)' }} ref={ref}>
-      <div className="max-w-3xl mx-auto">
+    <section id="register" className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }} ref={ref}>
+      {/* Gradient accents */}
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent-orange/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-accent-orange/3 blur-3xl pointer-events-none" />
+      <div className="max-w-3xl mx-auto relative z-10">
         <SectionHeading
           title="Secure Your Spot"
-          subtitle="Register via Ticket9. Get your QR-coded ticket instantly via WhatsApp & Email."
+          subtitle="Get your QR-coded ticket instantly via WhatsApp & Email."
           gradient
         />
 
@@ -159,7 +162,7 @@ export default function Registration() {
             href={TICKET9_URL}
             className="inline-flex items-center gap-2.5 px-10 py-4 rounded-full gradient-cta text-white text-lg font-heading font-semibold hover:opacity-90 transition-all cursor-pointer group pulse-glow"
           >
-            Register via Ticket9 — ₹{TICKET_PRICE}
+            Register Now — ₹{TICKET_PRICE}
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
           <div className="flex items-center justify-center gap-4 mt-4">

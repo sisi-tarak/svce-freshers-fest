@@ -12,7 +12,7 @@ import { MapPin } from 'lucide-react'
 const categoryColors: Record<string, { border: string; bg: string; text: string }> = {
   hackathon: { border: 'border-l-accent-orange', bg: 'bg-accent-orange/5', text: 'text-accent-orange' },
   tech: { border: 'border-l-accent-cyan', bg: 'bg-accent-cyan/5', text: 'text-accent-cyan' },
-  general: { border: 'border-l-white', bg: 'bg-white/5', text: 'text-white' },
+  general: { border: 'border-l-accent-orange-light', bg: 'bg-accent-orange-light/5', text: 'text-accent-orange-light' },
   break: { border: 'border-l-text-muted', bg: 'bg-text-muted/5', text: 'text-text-muted' },
   cultural: { border: 'border-l-purple-400', bg: 'bg-purple-400/5', text: 'text-purple-400' },
 }
@@ -64,8 +64,10 @@ export default function Schedule() {
   const schedule = activeDay === 'day1' ? DAY1_SCHEDULE : DAY2_SCHEDULE
 
   return (
-    <section id="schedule" className="section-padding bg-bg-primary" ref={ref}>
-      <div className="max-w-4xl mx-auto">
+    <section id="schedule" className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }} ref={ref}>
+      {/* Gradient overlay */}
+      <div className="absolute top-20 left-0 w-96 h-96 rounded-full bg-accent-orange/3 blur-3xl pointer-events-none" />
+      <div className="max-w-4xl mx-auto relative z-10">
         <SectionHeading
           title="The Complete Schedule"
           subtitle="Every minute planned. Every moment legendary."
@@ -86,7 +88,7 @@ export default function Schedule() {
         <div className="flex flex-wrap justify-center gap-4 mb-8 text-xs text-text-muted">
           <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-accent-orange" /> Hackathon</span>
           <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-accent-cyan" /> Tech Events</span>
-          <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-white" /> General</span>
+          <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-accent-orange-light" /> General</span>
           <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-purple-400" /> Cultural</span>
           <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-text-muted" /> Breaks</span>
         </div>

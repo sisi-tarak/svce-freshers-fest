@@ -4,7 +4,7 @@ import { Instagram, Youtube, Linkedin, Mail, Phone, MapPin, Heart } from 'lucide
 
 export default function Footer() {
   return (
-    <footer className="bg-bg-secondary border-t border-border-default">
+    <footer className="border-t relative overflow-hidden" style={{ backgroundColor: 'var(--bg-secondary)', borderColor: 'var(--border-default)' }}>
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}

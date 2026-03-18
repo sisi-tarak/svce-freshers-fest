@@ -88,9 +88,9 @@ export const DAY2_SCHEDULE: ScheduleItem[] = [
   { time: '1:30 PM', title: 'Lunch Break', venue: 'Canteen', category: 'break' },
   { time: '2:00 PM', title: 'Hackathon Demo & Judging + Project Exhibition + Workshops (3 Parallel Tracks)', venue: 'Labs + Seminar Halls', category: 'tech' },
   { time: '3:00 PM', title: 'SVCEians Success Stories — 3 Alumni + Live Q&A', venue: 'Auditorium', category: 'general' },
-  { time: '4:00 PM', title: 'Snack Break for ALL Attendees', venue: 'Campus-wide', category: 'break' },
   { time: '4:30 PM', title: 'Hackathon Results + Prize Announcements', venue: 'Auditorium', category: 'general' },
   { time: '5:30 PM', title: 'Prize Distribution + Social Media Contest Winners', venue: 'Auditorium', category: 'general' },
+  { time: '5:45 PM', title: 'Snack Break for ALL Attendees', venue: 'Campus-wide', category: 'break' },
   { time: '6:00 PM', title: 'MUSICAL EVENING: College Band + Solo Performances + Group Acts', venue: 'Open Stage', category: 'cultural' },
   { time: '8:00 PM', title: 'Event Closes', venue: 'Campus', category: 'general' },
 ]

@@ -96,8 +96,8 @@ export default function EventHighlights() {
   return (
     <section id="highlights" className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }} ref={ref}>
       {/* Decorative blobs */}
-      <div className="absolute top-20 -left-32 w-64 h-64 rounded-full bg-accent-orange/5 blur-3xl" />
-      <div className="absolute bottom-20 -right-32 w-64 h-64 rounded-full bg-accent-cyan/5 blur-3xl" />
+      <div className="absolute top-20 -left-32 w-64 h-64 rounded-full bg-accent-orange/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 -right-32 w-64 h-64 rounded-full bg-accent-orange/3 blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading
@@ -169,7 +169,7 @@ export default function EventHighlights() {
               </div>
               <div>
                 <h3 className="font-heading font-bold text-xl" style={{ color: 'var(--text-primary)' }}>
-                  One Ticket — ₹200 | Register via Ticket9
+                  One Ticket — ₹200 | Everything Included
                 </h3>
                 <p className="text-sm mt-0.5" style={{ color: 'var(--text-secondary)' }}>
                   Workshops + Exhibitions + Musical Evening + All Meals. Hackathon: +₹100 add-on.
@@ -191,7 +191,7 @@ export default function EventHighlights() {
                 onClick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}
                 className="flex items-center gap-2 px-5 py-2.5 rounded-full gradient-cta text-white font-heading font-semibold text-sm hover:opacity-90 transition-all cursor-pointer group"
               >
-                Register via Ticket9
+                Register Now
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </button>
             </div>

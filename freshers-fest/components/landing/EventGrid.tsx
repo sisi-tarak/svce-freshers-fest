@@ -18,8 +18,11 @@ export default function EventGrid() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="events" className="section-padding bg-bg-primary" ref={ref}>
-      <div className="max-w-6xl mx-auto">
+    <section id="events" className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }} ref={ref}>
+      {/* Gradient accents */}
+      <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-accent-orange/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-accent-orange/3 blur-3xl pointer-events-none" />
+      <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading
           title="Two Days. One Mission. Unlimited Energy."
           subtitle="From code marathons to college band nights — here's everything that's going down."

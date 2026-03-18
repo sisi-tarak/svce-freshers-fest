@@ -4,7 +4,6 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { SPONSOR_TIERS, FOOD_STALL_TIERS } from '@/lib/constants'
 import { Check, Mail, UtensilsCrossed } from 'lucide-react'
-import Button from '@/components/ui/Button'
 import SectionHeading from '@/components/ui/SectionHeading'
 
 export default function Sponsorship() {
@@ -12,8 +11,9 @@ export default function Sponsorship() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="sponsors" className="section-padding bg-bg-primary" ref={ref}>
-      <div className="max-w-6xl mx-auto">
+    <section id="sponsors" className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }} ref={ref}>
+      <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-accent-orange/3 blur-3xl pointer-events-none" />
+      <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading title="Partner With Us" subtitle="Three tiers. Unlimited visibility." />
 
         {/* Tier Cards */}
@@ -54,10 +54,10 @@ export default function Sponsorship() {
 
                 <div className="mt-6">
                   <a href="mailto:gdg@svce.ac.in?subject=Sponsorship%20Inquiry%20-%20Freshers%20Fest%202026">
-                    <Button variant="outline" size="sm" className="w-full">
+                    <button className="w-full inline-flex items-center justify-center gap-2 px-3 py-1.5 text-sm font-heading font-semibold rounded-lg border-2 transition-all duration-300 cursor-pointer" style={{ borderColor: 'var(--text-primary)', color: 'var(--text-primary)', backgroundColor: 'transparent' }}>
                       <Mail className="w-4 h-4" />
-                      Partner With Us — Contact GDG SVCE
-                    </Button>
+                      Contact GDG SVCE
+                    </button>
                   </a>
                 </div>
               </div>
@@ -91,10 +91,10 @@ export default function Sponsorship() {
 
           <div className="text-center">
             <a href="mailto:gdg@svce.ac.in?subject=Food%20Stall%20Sponsorship">
-              <Button variant="outline" size="sm">
+              <button className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-heading font-semibold rounded-lg border-2 transition-all duration-300 cursor-pointer" style={{ borderColor: 'var(--text-primary)', color: 'var(--text-primary)', backgroundColor: 'transparent' }}>
                 <Mail className="w-4 h-4" />
-                Partner With Us — Contact GDG SVCE
-              </Button>
+                Contact GDG SVCE
+              </button>
             </a>
           </div>
         </motion.div>

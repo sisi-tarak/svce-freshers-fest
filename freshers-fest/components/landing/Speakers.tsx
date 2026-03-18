@@ -11,8 +11,9 @@ export default function Speakers() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="speakers" className="section-padding bg-bg-secondary" ref={ref}>
-      <div className="max-w-5xl mx-auto">
+    <section id="speakers" className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--bg-secondary)' }} ref={ref}>
+      <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent-orange/5 blur-3xl pointer-events-none" />
+      <div className="max-w-5xl mx-auto relative z-10">
         <SectionHeading
           title="SVCEians Who Made It"
           subtitle="Real alumni. Real stories. No filter."

@@ -10,8 +10,9 @@ export default function SocialContest() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section className="section-padding bg-bg-primary" ref={ref}>
-      <div className="max-w-4xl mx-auto">
+    <section className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }} ref={ref}>
+      <div className="absolute top-20 right-0 w-72 h-72 rounded-full bg-accent-orange/5 blur-3xl pointer-events-none" />
+      <div className="max-w-4xl mx-auto relative z-10">
         <SectionHeading
           title="#SVCEFreshersFest2026"
           subtitle="Win Prizes — Post About Us!"

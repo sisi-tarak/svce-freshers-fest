@@ -50,10 +50,10 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b',
           isScrolled
-            ? 'glass py-2.5 shadow-lg shadow-black/5'
-            : 'bg-transparent py-4'
+            ? 'glass py-2.5 shadow-lg shadow-black/5 border-[var(--glass-border)]'
+            : 'bg-transparent py-4 border-transparent'
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -137,7 +137,7 @@ export default function Navbar() {
                 onClick={() => scrollTo('register')}
                 className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-full gradient-cta text-white text-sm font-heading font-semibold hover:opacity-90 transition-all duration-300 hover:gap-2.5 cursor-pointer group"
               >
-                Register via Ticket9
+                Register
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </button>
 
@@ -218,7 +218,7 @@ export default function Navbar() {
               onClick={() => scrollTo('register')}
               className="mt-4 px-8 py-3 rounded-full gradient-cta text-white text-lg font-heading font-semibold cursor-pointer"
             >
-              Register via Ticket9 — ₹200
+              Register Now — ₹200
             </motion.button>
 
             {/* Mobile theme toggle */}

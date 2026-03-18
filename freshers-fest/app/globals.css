@@ -3,7 +3,8 @@
 @theme {
   --color-accent-orange: #FF4D00;
   --color-accent-orange-light: #FF6B2B;
-  --color-accent-cyan: #00E5FF;
+  --color-accent-cyan: var(--accent-secondary);
+  --color-accent-amber: #F59E0B;
 
   /* Semantic colors mapped to CSS variables for theme switching */
   --color-bg-primary: var(--bg-primary);
@@ -38,27 +39,31 @@ html.dark {
   --scrollbar-hover: #3f3f46;
   --card-hover-shadow: rgba(255, 77, 0, 0.15);
   --overlay: rgba(10, 10, 11, 0.95);
+  --accent-secondary: #F59E0B;
+  --section-alt-bg: #111113;
   color-scheme: dark;
 }
 
 /* ─── Light Theme ─── */
 html.light {
-  --bg-primary: #F8F8FA;
+  --bg-primary: #FFFBF5;
   --bg-secondary: #FFFFFF;
-  --bg-tertiary: #F0F0F3;
+  --bg-tertiary: #FFF3E0;
   --bg-card: #FFFFFF;
-  --text-primary: #111113;
-  --text-secondary: #555560;
-  --text-muted: #8E8E9A;
-  --border-default: #E2E2E6;
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(0, 0, 0, 0.06);
-  --dot-color: rgba(0, 0, 0, 0.04);
-  --scrollbar-track: #F8F8FA;
-  --scrollbar-thumb: #D4D4D8;
-  --scrollbar-hover: #A1A1AA;
-  --card-hover-shadow: rgba(255, 77, 0, 0.12);
-  --overlay: rgba(248, 248, 250, 0.95);
+  --text-primary: #1A1A2E;
+  --text-secondary: #4A4A5A;
+  --text-muted: #8A8A9A;
+  --border-default: #F0E0D0;
+  --glass-bg: rgba(255, 251, 245, 0.9);
+  --glass-border: rgba(255, 77, 0, 0.08);
+  --dot-color: rgba(255, 77, 0, 0.04);
+  --scrollbar-track: #FFFBF5;
+  --scrollbar-thumb: #E0D0C0;
+  --scrollbar-hover: #C0B0A0;
+  --card-hover-shadow: rgba(255, 77, 0, 0.15);
+  --overlay: rgba(255, 251, 245, 0.95);
+  --accent-secondary: #E65100;
+  --section-alt-bg: #FFF8F0;
   color-scheme: light;
 }
 
@@ -106,7 +111,7 @@ body {
 }
 
 .glow-cyan {
-  box-shadow: 0 0 20px rgba(0, 229, 255, 0.3), 0 0 60px rgba(0, 229, 255, 0.1);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.3), 0 0 60px rgba(245, 158, 11, 0.1);
 }
 
 .glow-orange-subtle {
@@ -114,12 +119,12 @@ body {
 }
 
 .glow-cyan-subtle {
-  box-shadow: 0 0 30px rgba(0, 229, 255, 0.08);
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.08);
 }
 
 /* ─── Gradient text ─── */
 .gradient-text {
-  background: linear-gradient(135deg, #FF4D00 0%, #FF6B2B 50%, #00E5FF 100%);
+  background: linear-gradient(135deg, #FF4D00 0%, #FF6B2B 50%, #F59E0B 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -138,11 +143,11 @@ body {
 }
 
 .gradient-hero {
-  background: linear-gradient(135deg, #FF4D00 0%, #FF6B2B 50%, #00E5FF 100%);
+  background: linear-gradient(135deg, #FF4D00 0%, #FF6B2B 50%, #F59E0B 100%);
 }
 
 .gradient-tech {
-  background: linear-gradient(135deg, #00E5FF 0%, var(--bg-primary) 100%);
+  background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--bg-primary) 100%);
 }
 
 /* ─── Card hover ─── */
@@ -159,8 +164,8 @@ body {
   transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 .card-hover-cyan:hover {
-  box-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
-  border-color: rgba(0, 229, 255, 0.3);
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.3);
   transform: translateY(-4px);
 }
 
@@ -174,11 +179,11 @@ body {
 }
 
 @keyframes glitch {
-  0% { text-shadow: 2px 0 #FF4D00, -2px 0 #00E5FF; }
-  25% { text-shadow: -2px 0 #FF4D00, 2px 0 #00E5FF; }
-  50% { text-shadow: 2px 2px #FF4D00, -2px -2px #00E5FF; }
-  75% { text-shadow: -2px 2px #FF4D00, 2px -2px #00E5FF; }
-  100% { text-shadow: 2px 0 #FF4D00, -2px 0 #00E5FF; }
+  0% { text-shadow: 2px 0 #FF4D00, -2px 0 #F59E0B; }
+  25% { text-shadow: -2px 0 #FF4D00, 2px 0 #F59E0B; }
+  50% { text-shadow: 2px 2px #FF4D00, -2px -2px #F59E0B; }
+  75% { text-shadow: -2px 2px #FF4D00, 2px -2px #F59E0B; }
+  100% { text-shadow: 2px 0 #FF4D00, -2px 0 #F59E0B; }
 }
 .glitch-text {
   animation: glitch 0.5s ease-in-out 1;
@@ -223,6 +228,14 @@ body {
 ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
 ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-hover); }
+
+/* ─── Gradient section divider ─── */
+.section-gradient-top {
+  background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+}
+.section-gradient-bottom {
+  background: linear-gradient(to top, var(--bg-primary), var(--bg-secondary));
+}
 
 /* ─── Section spacing ─── */
 .section-padding {

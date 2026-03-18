@@ -82,7 +82,7 @@ export default function Hero() {
     const drawShape = (p: typeof particles[0]) => {
       ctx.save()
       ctx.globalAlpha = p.opacity
-      ctx.strokeStyle = p.shape < 2 ? '#FF4D00' : '#00E5FF'
+      ctx.strokeStyle = p.shape < 2 ? '#FF4D00' : '#F59E0B'
       ctx.lineWidth = 0.5
       ctx.translate(p.x, p.y)
 
@@ -226,7 +226,7 @@ export default function Hero() {
             onClick={() => scrollTo('register')}
             className="flex items-center gap-2.5 px-8 py-4 rounded-full gradient-cta text-white text-lg font-heading font-semibold hover:opacity-90 transition-all cursor-pointer group pulse-glow"
           >
-            Register via Ticket9 — ₹{TICKET_PRICE}
+            Register Now — ₹{TICKET_PRICE}
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
         </motion.div>
@@ -238,10 +238,10 @@ export default function Hero() {
           transition={{ delay: 1.3 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 max-w-3xl mx-auto"
         >
-          <AnimatedCounter target="2000+" label="SVCE Students" />
-          <AnimatedCounter target="1,000–1,500" label="External Target" />
+          <AnimatedCounter target="2,700+" label="Expected Footfall" />
           <AnimatedCounter target="150+" label="Organizers" />
           <AnimatedCounter target="24 HRS" label="Hackathon" />
+          <AnimatedCounter target="7+" label="Events" />
         </motion.div>
       </div>
 

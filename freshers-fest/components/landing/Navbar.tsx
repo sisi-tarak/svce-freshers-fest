@@ -5,14 +5,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/hooks/useTheme";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 
-const NAV_LINKS = [
+const NAV_LINKS: { id: string; label: string; href?: string }[] = [
   { id: "events", label: "Events" },
   { id: "hackathon", label: "Hackathon" },
-  { id: "schedule", label: "Schedule" },
+  { id: "schedule", label: "Schedule", href: "/schedule" },
   { id: "speakers", label: "Speakers" },
   { id: "sponsors", label: "Sponsors" },
+  { id: "about", label: "About", href: "/about" },
   { id: "faq", label: "FAQ" },
 ];
 
@@ -21,18 +23,21 @@ export default function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const { theme, toggleTheme } = useTheme();
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      const sections = NAV_LINKS.map((link) =>
+      const scrollLinks = NAV_LINKS.filter((link) => !link.href);
+      const sections = scrollLinks.map((link) =>
         document.getElementById(link.id),
       );
       const scrollPos = window.scrollY + 200;
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
         if (section && section.offsetTop <= scrollPos) {
-          setActiveSection(NAV_LINKS[i].id);
+          setActiveSection(scrollLinks[i].id);
           break;
         }
       }
@@ -41,9 +46,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const handleNavClick = (link: { id: string; href?: string }) => {
     setIsMobileOpen(false);
+    if (link.href) {
+      router.push(link.href);
+    } else if (pathname !== "/") {
+      router.push(`/#${link.id}`);
+    } else {
+      document.getElementById(link.id)?.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -63,7 +74,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between">
             {/* ─── Logo ─── */}
             <button
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              onClick={() => pathname === "/" ? window.scrollTo({ top: 0, behavior: "smooth" }) : router.push("/")}
               className="flex items-center gap-3 cursor-pointer group"
             >
               <Image
@@ -92,24 +103,25 @@ export default function Navbar() {
                 className="flex items-center gap-0.5 p-1 rounded-full"
                 style={{ backgroundColor: "var(--bg-tertiary)" }}
               >
-                {NAV_LINKS.map((link) => (
+                {NAV_LINKS.map((link) => {
+                  const isActive = link.href
+                    ? pathname === link.href
+                    : activeSection === link.id;
+                  return (
                   <button
                     key={link.id}
-                    onClick={() => scrollTo(link.id)}
+                    onClick={() => handleNavClick(link)}
                     className={cn(
                       "relative px-3.5 py-1.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer",
-                      activeSection === link.id
+                      isActive
                         ? "text-white"
                         : "hover:text-[var(--text-primary)]",
                     )}
                     style={{
-                      color:
-                        activeSection === link.id
-                          ? undefined
-                          : "var(--text-secondary)",
+                      color: isActive ? undefined : "var(--text-secondary)",
                     }}
                   >
-                    {activeSection === link.id && (
+                    {isActive && (
                       <motion.div
                         layoutId="activeNavBg"
                         className="absolute inset-0 gradient-cta rounded-full"
@@ -122,7 +134,8 @@ export default function Navbar() {
                     )}
                     <span className="relative z-10">{link.label}</span>
                   </button>
-                ))}
+                  )
+                })}
               </div>
             </nav>
 
@@ -158,7 +171,7 @@ export default function Navbar() {
 
               {/* Register CTA */}
               <button
-                onClick={() => scrollTo("register")}
+                onClick={() => handleNavClick({ id: "register" })}
                 className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-full gradient-cta text-white text-sm font-heading font-semibold hover:opacity-90 transition-all duration-300 hover:gap-2.5 cursor-pointer group"
               >
                 Register
@@ -222,34 +235,36 @@ export default function Navbar() {
               </span>
             </div>
 
-            {NAV_LINKS.map((link, i) => (
+            {NAV_LINKS.map((link, i) => {
+              const isActive = link.href
+                ? pathname === link.href
+                : activeSection === link.id;
+              return (
               <motion.button
                 key={link.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ delay: i * 0.04 }}
-                onClick={() => scrollTo(link.id)}
+                onClick={() => handleNavClick(link)}
                 className={cn(
                   "text-xl font-heading font-semibold transition-colors cursor-pointer px-6 py-2 rounded-lg",
-                  activeSection === link.id ? "text-accent-orange" : "",
+                  isActive ? "text-accent-orange" : "",
                 )}
                 style={{
-                  color:
-                    activeSection === link.id
-                      ? undefined
-                      : "var(--text-primary)",
+                  color: isActive ? undefined : "var(--text-primary)",
                 }}
               >
                 {link.label}
               </motion.button>
-            ))}
+              )
+            })}
 
             <motion.button
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              onClick={() => scrollTo("register")}
+              onClick={() => handleNavClick({ id: "register" })}
               className="mt-4 px-8 py-3 rounded-full gradient-cta text-white text-lg font-heading font-semibold cursor-pointer"
             >
               Register Now

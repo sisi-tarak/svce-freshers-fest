@@ -87,7 +87,7 @@ function FooterLogo() {
 export default function Footer() {
   return (
     <AnimatedFooter
-      brandName="SVCE FRESHERS FEST"
+      brandName="FRESHERS FEST"
       brandDescription="Where SVCE Proves It Is Technical. Cultural. Total. April 10-11, 2026 — two days of hackathons, workshops, exhibitions, music, and everything in between."
       socialLinks={SOCIAL_LINKS}
       navLinks={NAV_LINKS}

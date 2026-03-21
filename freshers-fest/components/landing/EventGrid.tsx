@@ -19,9 +19,9 @@ export default function EventGrid() {
 
   return (
     <section id="events" className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }} ref={ref}>
-      {/* Gradient accents */}
-      <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-accent-orange/5 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-accent-orange/3 blur-3xl pointer-events-none" />
+      {/* Subtle decorative blobs */}
+      <div className="absolute top-0 right-0 w-80 h-80 rounded-full blur-3xl pointer-events-none" style={{ backgroundColor: 'var(--bg-tertiary)', opacity: 0.4 }} />
+      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl pointer-events-none" style={{ backgroundColor: 'var(--bg-tertiary)', opacity: 0.3 }} />
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading
           title="Two Days. One Mission. Unlimited Energy."
@@ -39,8 +39,8 @@ export default function EventGrid() {
                 transition={{ delay: i * 0.08, duration: 0.5 }}
                 className="group rounded-xl bg-bg-secondary border border-border-default p-6 card-hover-orange"
               >
-                <div className="w-12 h-12 rounded-lg bg-accent-orange/10 flex items-center justify-center mb-4 group-hover:bg-accent-orange/20 transition-colors">
-                  {Icon && <Icon className="w-6 h-6 text-accent-orange" />}
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-colors" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+                  {Icon && <Icon className="w-6 h-6 text-text-secondary" />}
                 </div>
                 <h3 className="font-heading font-semibold text-text-primary mb-2">{event.title}</h3>
                 <p className="text-text-secondary text-sm mb-3 leading-relaxed">

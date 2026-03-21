@@ -12,7 +12,7 @@ export default function Speakers() {
 
   return (
     <section id="speakers" className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--bg-secondary)' }} ref={ref}>
-      <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent-orange/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-3xl pointer-events-none" style={{ backgroundColor: 'var(--bg-tertiary)', opacity: 0.4 }} />
       <div className="max-w-5xl mx-auto relative z-10">
         <SectionHeading
           title="SVCEians Who Made It"
@@ -29,14 +29,14 @@ export default function Speakers() {
               className="rounded-xl bg-bg-primary border border-border-default p-6 text-center card-hover-orange"
             >
               {/* Avatar */}
-              <div className="w-24 h-24 rounded-full mx-auto mb-4 bg-bg-tertiary border-2 border-accent-orange/30 flex items-center justify-center glow-orange-subtle">
+              <div className="w-24 h-24 rounded-full mx-auto mb-4 bg-bg-tertiary border-2 border-border-default flex items-center justify-center">
                 <User className="w-10 h-10 text-text-muted" />
               </div>
 
               <h3 className="font-heading font-semibold text-lg text-text-primary mb-1">
                 {speaker.name}
               </h3>
-              <p className="text-accent-orange text-sm font-medium mb-1">
+              <p className="text-sm font-medium mb-1" style={{ color: 'var(--text-secondary)' }}>
                 {speaker.current_role}
               </p>
               <p className="text-text-muted text-sm mb-3">{speaker.company}</p>
@@ -44,8 +44,8 @@ export default function Speakers() {
                 {speaker.description}
               </p>
 
-              <div className="mt-4 inline-flex items-center gap-1 text-xs text-accent-orange/70">
-                <span className="px-2 py-0.5 rounded-full bg-accent-orange/10">{speaker.speaker_type}</span>
+              <div className="mt-4 inline-flex items-center gap-1 text-xs" style={{ color: 'var(--text-muted)' }}>
+                <span className="px-2 py-0.5 rounded-full bg-bg-tertiary">{speaker.speaker_type}</span>
               </div>
             </motion.div>
           ))}

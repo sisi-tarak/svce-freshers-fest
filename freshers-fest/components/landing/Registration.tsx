@@ -24,15 +24,14 @@ export default function Registration() {
       style={{ backgroundColor: "var(--bg-primary)" }}
       ref={ref}
     >
-      {/* Gradient accents */}
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent-orange/5 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-accent-orange/3 blur-3xl pointer-events-none" />
+      {/* Subtle decorative blobs */}
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ backgroundColor: 'var(--bg-tertiary)', opacity: 0.4 }} />
+      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl pointer-events-none" style={{ backgroundColor: 'var(--bg-tertiary)', opacity: 0.3 }} />
 
       <div className="max-w-4xl mx-auto relative z-10">
         <SectionHeading
           title="Secure Your Spot"
           subtitle="Get your QR-coded ticket instantly via WhatsApp & Email."
-          gradient
         />
 
         {/* Pricing Cards */}
@@ -55,8 +54,8 @@ export default function Registration() {
             <div className="p-7">
               {/* Header */}
               <div className="flex items-center gap-3 mb-5">
-                <div className="w-12 h-12 rounded-xl bg-accent-orange/10 flex items-center justify-center">
-                  <Ticket className="w-6 h-6 text-accent-orange" />
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+                  <Ticket className="w-6 h-6" style={{ color: 'var(--text-secondary)' }} />
                 </div>
                 <div>
                   <h3
@@ -108,7 +107,7 @@ export default function Registration() {
                     className="flex items-start gap-2.5 text-sm"
                     style={{ color: "var(--text-secondary)" }}
                   >
-                    <CircleCheck className="w-4 h-4 text-accent-orange shrink-0 mt-0.5" />
+                    <CircleCheck className="w-4 h-4 shrink-0 mt-0.5" style={{ color: 'var(--text-muted)' }} />
                     {item}
                   </li>
                 ))}
@@ -143,8 +142,8 @@ export default function Registration() {
             <div className="p-7">
               {/* Header */}
               <div className="flex items-center gap-3 mb-5">
-                <div className="w-12 h-12 rounded-xl bg-accent-cyan/10 flex items-center justify-center">
-                  <QrCode className="w-6 h-6 text-accent-cyan" />
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+                  <QrCode className="w-6 h-6" style={{ color: 'var(--text-secondary)' }} />
                 </div>
                 <div>
                   <h3
@@ -196,7 +195,7 @@ export default function Registration() {
                     className="flex items-start gap-2.5 text-sm"
                     style={{ color: "var(--text-secondary)" }}
                   >
-                    <CircleCheck className="w-4 h-4 text-accent-cyan shrink-0 mt-0.5" />
+                    <CircleCheck className="w-4 h-4 shrink-0 mt-0.5" style={{ color: 'var(--text-muted)' }} />
                     {item}
                   </li>
                 ))}

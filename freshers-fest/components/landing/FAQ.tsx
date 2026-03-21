@@ -21,7 +21,7 @@ const FAQ_ITEMS = [
 export default function FAQ() {
   return (
     <section id="faq" className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--bg-secondary)' }}>
-      <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-accent-orange/3 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full blur-3xl pointer-events-none" style={{ backgroundColor: 'var(--bg-tertiary)', opacity: 0.3 }} />
       <div className="max-w-3xl mx-auto relative z-10">
         <SectionHeading
           title="Got Questions?"

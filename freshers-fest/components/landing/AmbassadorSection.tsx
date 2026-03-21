@@ -17,7 +17,7 @@ export default function AmbassadorSection() {
 
   return (
     <section id="ambassador" className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--bg-secondary)' }} ref={ref}>
-      <div className="absolute top-20 -right-20 w-72 h-72 rounded-full bg-accent-orange/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-20 -right-20 w-72 h-72 rounded-full blur-3xl pointer-events-none" style={{ backgroundColor: 'var(--bg-tertiary)', opacity: 0.4 }} />
       <div className="max-w-4xl mx-auto relative z-10">
         <SectionHeading
           title="Become a Campus Ambassador"
@@ -41,8 +41,8 @@ export default function AmbassadorSection() {
                   transition={{ delay: 0.3 + i * 0.07 }}
                   className="flex items-center gap-3"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-accent-orange/10 flex items-center justify-center shrink-0">
-                    {Icon && <Icon className="w-5 h-5 text-accent-orange" />}
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+                    {Icon && <Icon className="w-5 h-5 text-text-secondary" />}
                   </div>
                   <span className="text-text-secondary text-sm">{benefit.text}</span>
                 </motion.div>

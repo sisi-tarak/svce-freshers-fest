@@ -63,9 +63,7 @@ export function AnimatedFooter({
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
           {/* Brand column — logo + description only, NO brandName heading */}
           <div className="md:col-span-5">
-            {brandIcon && (
-              <div className="mb-4">{brandIcon}</div>
-            )}
+            {brandIcon && <div className="mb-4">{brandIcon}</div>}
             <p
               className="text-sm leading-relaxed max-w-sm"
               style={{ color: "var(--text-secondary)" }}
@@ -187,7 +185,7 @@ export function AnimatedFooter({
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              opacity: isDark ? 0.06 : 0.05,
+              opacity: isDark ? 0.1 : 0.15,
             }}
           >
             {brandName}

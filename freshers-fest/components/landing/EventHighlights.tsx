@@ -95,15 +95,14 @@ export default function EventHighlights() {
 
   return (
     <section id="highlights" className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }} ref={ref}>
-      {/* Decorative blobs */}
-      <div className="absolute top-20 -left-32 w-64 h-64 rounded-full bg-accent-orange/5 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-20 -right-32 w-64 h-64 rounded-full bg-accent-orange/3 blur-3xl pointer-events-none" />
+      {/* Subtle decorative blobs */}
+      <div className="absolute top-20 -left-32 w-64 h-64 rounded-full blur-3xl pointer-events-none" style={{ backgroundColor: 'var(--bg-tertiary)', opacity: 0.5 }} />
+      <div className="absolute bottom-20 -right-32 w-64 h-64 rounded-full blur-3xl pointer-events-none" style={{ backgroundColor: 'var(--bg-tertiary)', opacity: 0.3 }} />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading
           title="The Numbers Speak"
           subtitle="One ticket. Two days. Everything included."
-          gradient
         />
 
         {/* Interactive Number Grid */}
@@ -118,14 +117,14 @@ export default function EventHighlights() {
               <TiltCard className="h-full perspective-[1000px]">
                 <div
                   className={`h-full rounded-2xl p-6 md:p-8 border cursor-default group transition-all duration-300 ${
-                    item.color === 'cyan' ? 'card-hover-cyan' : 'card-hover-orange'
+                    'card-hover-orange'
                   }`}
                   style={{
                     backgroundColor: 'var(--bg-secondary)',
                     borderColor: 'var(--border-default)',
                   }}
                 >
-                  <div className={`mb-2 ${item.color === 'cyan' ? 'text-accent-cyan' : 'text-accent-orange'}`}>
+                  <div className="mb-2" style={{ color: 'var(--text-primary)' }}>
                     <CountUpNumber target={item.number} suffix={item.suffix} />
                   </div>
                   <p className="text-sm md:text-base font-medium" style={{ color: 'var(--text-secondary)' }}>
@@ -134,7 +133,8 @@ export default function EventHighlights() {
                   {/* Shimmer line */}
                   <div className="mt-4 h-0.5 w-full rounded-full overflow-hidden" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
                     <motion.div
-                      className={`h-full rounded-full ${item.color === 'cyan' ? 'bg-accent-cyan' : 'gradient-cta'}`}
+                      className="h-full rounded-full"
+                      style={{ backgroundColor: 'var(--text-muted)' }}
                       initial={{ width: '0%' }}
                       animate={isInView ? { width: '100%' } : {}}
                       transition={{ duration: 1.2, delay: 0.3 + i * 0.1, ease: 'easeOut' }}
@@ -153,8 +153,8 @@ export default function EventHighlights() {
           transition={{ delay: 0.6 }}
           className="relative rounded-2xl overflow-hidden"
         >
-          {/* Animated gradient border */}
-          <div className="absolute inset-0 gradient-hero opacity-20 animate-shimmer" />
+          {/* Animated shimmer border */}
+          <div className="absolute inset-0 animate-shimmer" style={{ opacity: 0.1 }} />
 
           <div
             className="relative rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 border"
@@ -164,8 +164,8 @@ export default function EventHighlights() {
             }}
           >
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-xl gradient-cta flex items-center justify-center shrink-0 animate-float">
-                <Ticket className="w-7 h-7 text-white" />
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 animate-float" style={{ backgroundColor: 'var(--bg-tertiary)', border: '1px solid var(--border-default)' }}>
+                <Ticket className="w-7 h-7" style={{ color: 'var(--text-primary)' }} />
               </div>
               <div>
                 <h3 className="font-heading font-bold text-xl" style={{ color: 'var(--text-primary)' }}>
@@ -182,7 +182,7 @@ export default function EventHighlights() {
 
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2 px-4 py-2 rounded-full" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
-                <Calendar className="w-4 h-4 text-accent-orange" />
+                <Calendar className="w-4 h-4" style={{ color: 'var(--text-secondary)' }} />
                 <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
                   April 10–11, 2026
                 </span>

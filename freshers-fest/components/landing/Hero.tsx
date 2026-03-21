@@ -14,7 +14,7 @@ function CountdownBox({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center">
       <div
-        className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl border flex items-center justify-center glow-orange-subtle"
+        className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl border flex items-center justify-center"
         style={{
           backgroundColor: "var(--bg-secondary)",
           borderColor: "var(--border-default)",
@@ -49,7 +49,7 @@ function AnimatedCounter({ target, label }: { target: string; label: string }) {
       transition={{ duration: 0.5 }}
       className="text-center"
     >
-      <div className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold gradient-text-orange">
+      <div className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold" style={{ color: 'var(--text-primary)' }}>
         {target}
       </div>
       <div
@@ -216,7 +216,7 @@ export default function Hero() {
           className="w-6 h-10 rounded-full border-2 flex items-start justify-center p-1.5"
           style={{ borderColor: "var(--text-muted)" }}
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-accent-orange" />
+          <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--text-muted)' }} />
         </motion.div>
       </motion.div>
     </section>

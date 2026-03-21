@@ -20,9 +20,9 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <HackathonSection />
         <EventHighlights />
         <EventGrid />
-        <HackathonSection />
         <Schedule />
         <Speakers />
         <Testimonials />

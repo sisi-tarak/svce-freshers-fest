@@ -27,7 +27,7 @@ export default function SectionHeading({
       <h2
         className={cn(
           'text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-4',
-          gradient ? 'gradient-text' : 'text-text-primary'
+          'gradient-text',
         )}
       >
         {title}

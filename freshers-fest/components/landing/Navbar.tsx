@@ -217,7 +217,7 @@ export default function Navbar() {
             </button>
 
             <div className="mb-4">
-              <span className="font-heading font-bold text-2xl gradient-text">
+              <span className="font-heading font-bold text-2xl" style={{ color: 'var(--text-primary)' }}>
                 FRESHERS FEST
               </span>
             </div>

@@ -5,6 +5,7 @@ import EventGrid from '@/components/landing/EventGrid'
 import HackathonSection from '@/components/landing/HackathonSection'
 import Schedule from '@/components/landing/Schedule'
 import Speakers from '@/components/landing/Speakers'
+import Testimonials from '@/components/landing/Testimonials'
 import Sponsorship from '@/components/landing/Sponsorship'
 import AmbassadorSection from '@/components/landing/AmbassadorSection'
 import SocialContest from '@/components/landing/SocialContest'
@@ -24,6 +25,7 @@ export default function Home() {
         <HackathonSection />
         <Schedule />
         <Speakers />
+        <Testimonials />
         <Sponsorship />
         <AmbassadorSection />
         <SocialContest />

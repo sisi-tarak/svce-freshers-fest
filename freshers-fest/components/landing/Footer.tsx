@@ -7,9 +7,9 @@ import {
   Mail,
   Phone,
   MapPin,
-  Sparkles,
 } from "lucide-react";
 import { AnimatedFooter } from "@/components/ui/modem-animated-footer";
+import { useTheme } from "@/hooks/useTheme";
 
 const SOCIAL_LINKS = [
   {
@@ -73,20 +73,28 @@ function ContactLink({
   );
 }
 
+function FooterLogo() {
+  const { theme } = useTheme();
+  return (
+    <img
+      src={theme === "dark" ? "/svcelogo.png" : "/svcelogo-dark.png"}
+      alt="SVCE Tirupati"
+      className="h-16 w-auto"
+    />
+  );
+}
+
 export default function Footer() {
   return (
     <AnimatedFooter
       brandName="SVCE FRESHERS FEST"
-      brandDescription="Where SVCE Proves It Is Technical. Cultural. Total. 
-      April 10-11, 2026 — two days of hackathons, workshops, exhibitions, music, and everything in between."
+      brandDescription="Where SVCE Proves It Is Technical. Cultural. Total. April 10-11, 2026 — two days of hackathons, workshops, exhibitions, music, and everything in between."
       socialLinks={SOCIAL_LINKS}
       navLinks={NAV_LINKS}
       creatorName="GDG Team @ SVCE Tirupati"
-      brandIcon={
-        <img src="/svcelogo.png" alt="SVCE Logo" className="max-w-96 h-auto" />
-      }
+      brandIcon={<FooterLogo />}
     >
-      {/* Contact Info — rendered in the children slot */}
+      {/* Contact Info */}
       <div>
         <h4
           className="font-heading font-semibold text-sm uppercase tracking-wider mb-4"
@@ -122,7 +130,10 @@ export default function Footer() {
               Sisindri Singamsetti
             </span>
           </p>
-          <p className="text-xs font-medium" style={{ color: 'var(--text-primary)' }}>
+          <p
+            className="text-xs font-medium"
+            style={{ color: "var(--text-primary)" }}
+          >
             #SVCEFreshersFest2026
           </p>
         </div>

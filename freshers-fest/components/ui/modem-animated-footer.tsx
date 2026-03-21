@@ -1,28 +1,28 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import { useTheme } from '@/hooks/useTheme'
+import React from "react";
+import { motion } from "framer-motion";
+import { useTheme } from "@/hooks/useTheme";
 
 interface SocialLink {
-  icon: React.ReactNode
-  href: string
-  label: string
+  icon: React.ReactNode;
+  href: string;
+  label: string;
 }
 
 interface NavLink {
-  label: string
-  id: string
+  label: string;
+  id: string;
 }
 
 interface AnimatedFooterProps {
-  brandName: string
-  brandDescription: string
-  socialLinks: SocialLink[]
-  navLinks: NavLink[]
-  creatorName: string
-  brandIcon?: React.ReactNode
-  children?: React.ReactNode
+  brandName: string;
+  brandDescription: string;
+  socialLinks: SocialLink[];
+  navLinks: NavLink[];
+  creatorName: string;
+  brandIcon?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export function AnimatedFooter({
@@ -34,33 +34,41 @@ export function AnimatedFooter({
   brandIcon,
   children,
 }: AnimatedFooterProps) {
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-  }
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <footer
-      className="relative overflow-hidden border-t"
+      className="relative overflow-hidden"
       style={{
-        backgroundColor: 'var(--bg-secondary)',
-        borderColor: 'var(--border-default)',
+        backgroundColor: "var(--bg-secondary)",
       }}
     >
+      {/* Subtle top separator — gradient line, not a solid border */}
+      <div
+        className="h-px w-full"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, var(--border-default), transparent)",
+        }}
+      />
+
       {/* Main footer content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 pt-14 pb-8">
         {/* Top section: Brand + Nav + Social */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
-          {/* Brand column */}
+          {/* Brand column — logo + description only, NO brandName heading */}
           <div className="md:col-span-5">
-            <div className="flex items-center gap-2 mb-3">
-              {brandIcon}
-            </div>
+            {brandIcon && (
+              <div className="mb-4">{brandIcon}</div>
+            )}
             <p
               className="text-sm leading-relaxed max-w-sm"
-              style={{ color: 'var(--text-secondary)' }}
+              style={{ color: "var(--text-secondary)" }}
             >
               {brandDescription}
             </p>
@@ -77,23 +85,25 @@ export function AnimatedFooter({
                   whileTap={{ scale: 0.95 }}
                   className="group w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300"
                   style={{
-                    backgroundColor: 'var(--bg-tertiary)',
-                    color: 'var(--text-secondary)',
-                    border: '1px solid var(--border-default)',
+                    backgroundColor: "var(--bg-tertiary)",
+                    color: "var(--text-secondary)",
+                    border: "1px solid var(--border-default)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = 'var(--accent-orange, #FF4D00)'
+                    e.currentTarget.style.color =
+                      "var(--accent-orange, #FF4D00)";
                     e.currentTarget.style.borderColor = isDark
-                      ? 'rgba(255, 77, 0, 0.3)'
-                      : 'rgba(230, 81, 0, 0.3)'
+                      ? "rgba(255, 77, 0, 0.3)"
+                      : "rgba(230, 81, 0, 0.3)";
                     e.currentTarget.style.backgroundColor = isDark
-                      ? 'rgba(255, 77, 0, 0.08)'
-                      : 'rgba(230, 81, 0, 0.06)'
+                      ? "rgba(255, 77, 0, 0.08)"
+                      : "rgba(230, 81, 0, 0.06)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = 'var(--text-secondary)'
-                    e.currentTarget.style.borderColor = 'var(--border-default)'
-                    e.currentTarget.style.backgroundColor = 'var(--bg-tertiary)'
+                    e.currentTarget.style.color = "var(--text-secondary)";
+                    e.currentTarget.style.borderColor = "var(--border-default)";
+                    e.currentTarget.style.backgroundColor =
+                      "var(--bg-tertiary)";
                   }}
                   aria-label={link.label}
                 >
@@ -107,7 +117,7 @@ export function AnimatedFooter({
           <div className="md:col-span-3">
             <h4
               className="font-heading font-semibold text-sm uppercase tracking-wider mb-4"
-              style={{ color: 'var(--text-muted)' }}
+              style={{ color: "var(--text-muted)" }}
             >
               Quick Links
             </h4>
@@ -117,14 +127,14 @@ export function AnimatedFooter({
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
                   className="text-sm text-left transition-all duration-200 cursor-pointer"
-                  style={{ color: 'var(--text-secondary)' }}
+                  style={{ color: "var(--text-secondary)" }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = 'var(--text-primary)'
-                    e.currentTarget.style.paddingLeft = '4px'
+                    e.currentTarget.style.color = "var(--text-primary)";
+                    e.currentTarget.style.paddingLeft = "4px";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = 'var(--text-secondary)'
-                    e.currentTarget.style.paddingLeft = '0px'
+                    e.currentTarget.style.color = "var(--text-secondary)";
+                    e.currentTarget.style.paddingLeft = "0px";
                   }}
                 >
                   {link.label}
@@ -142,49 +152,48 @@ export function AnimatedFooter({
           className="h-px w-full mb-6"
           style={{
             background:
-              'linear-gradient(to right, transparent, var(--border-default), transparent)',
+              "linear-gradient(to right, transparent, var(--border-default), transparent)",
           }}
         />
 
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+          <p className="text-xs" style={{ color: "var(--text-muted)" }}>
             © 2026 SVCE Freshers Fest. Organized by GDG Team, SVCE Tirupati.
           </p>
           <p
             className="text-xs flex items-center gap-1"
-            style={{ color: 'var(--text-muted)' }}
+            style={{ color: "var(--text-muted)" }}
           >
-            Built with{' '}
+            Built with{" "}
             <span className="text-accent-orange inline-block animate-pulse">
               ♥
-            </span>{' '}
+            </span>{" "}
             by {creatorName}
           </p>
         </div>
       </div>
 
-      {/* ─── Large Faded Background Text ─── */}
+      {/* ─── Large Faded Background Text — pale orange ─── */}
       <div className="relative z-0 -mt-16 overflow-hidden select-none pointer-events-none">
         <div className="max-w-7xl mx-auto px-4">
           <div
             className="text-center font-heading font-black leading-none"
             style={{
-              fontSize: 'clamp(3rem, 12vw, 10rem)',
+              fontSize: "clamp(3rem, 12vw, 10rem)",
               backgroundImage: isDark
-                ? 'linear-gradient(to bottom, rgba(255, 158, 11, 0.9), rgba(255, 158, 11, 0))'
-                : 'linear-gradient(to bottom, rgba(230, 81, 0, 0.85), rgba(230, 81, 0, 0))',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              opacity: isDark ? 0.08 : 0.07,
+                ? "linear-gradient(to bottom, rgba(255, 158, 11, 0.7), rgba(255, 158, 11, 0))"
+                : "linear-gradient(to bottom, rgba(230, 81, 0, 0.6), rgba(230, 81, 0, 0))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              opacity: isDark ? 0.06 : 0.05,
             }}
           >
             {brandName}
           </div>
         </div>
-
       </div>
     </footer>
-  )
+  );
 }

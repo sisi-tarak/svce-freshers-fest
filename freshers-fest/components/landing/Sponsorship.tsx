@@ -53,7 +53,7 @@ export default function Sponsorship() {
                 </ul>
 
                 <div className="mt-6">
-                  <a href="mailto:gdg@svce.ac.in?subject=Sponsorship%20Inquiry%20-%20Freshers%20Fest%202026">
+                  <a href="mailto:gdsc@svce.edu.in?subject=Sponsorship%20Inquiry%20-%20Freshers%20Fest%202026">
                     <button className="w-full inline-flex items-center justify-center gap-2 px-3 py-1.5 text-sm font-heading font-semibold rounded-lg border-2 transition-all duration-300 cursor-pointer" style={{ borderColor: 'var(--text-primary)', color: 'var(--text-primary)', backgroundColor: 'transparent' }}>
                       <Mail className="w-4 h-4" />
                       Contact GDG SVCE
@@ -90,7 +90,7 @@ export default function Sponsorship() {
           </div>
 
           <div className="text-center">
-            <a href="mailto:gdg@svce.ac.in?subject=Food%20Stall%20Sponsorship">
+            <a href="mailto:gdsc@svce.edu.in?subject=Food%20Stall%20Sponsorship">
               <button className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-heading font-semibold rounded-lg border-2 transition-all duration-300 cursor-pointer" style={{ borderColor: 'var(--text-primary)', color: 'var(--text-primary)', backgroundColor: 'transparent' }}>
                 <Mail className="w-4 h-4" />
                 Contact GDG SVCE

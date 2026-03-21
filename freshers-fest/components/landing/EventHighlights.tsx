@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
 import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { EVENT_HIGHLIGHTS } from '@/lib/constants'
-import { ArrowRight, MapPin, Calendar, Clock, Users, Scissors } from 'lucide-react'
+import { ArrowRight, Scissors } from 'lucide-react'
 import SectionHeading from '@/components/ui/SectionHeading'
 import { useTheme } from '@/hooks/useTheme'
 
@@ -89,23 +89,6 @@ function CountUpNumber({ target, suffix, isDark }: { target: string; suffix: str
   )
 }
 
-/* ─── Perforated circle for ticket edges ─── */
-function TicketPerforations({ side, isDark }: { side: 'left' | 'right'; isDark: boolean }) {
-  const dots = Array.from({ length: 12 })
-  return (
-    <div
-      className={`absolute top-0 bottom-0 flex flex-col justify-between py-2 z-20 ${side === 'left' ? '-left-[6px]' : '-right-[6px]'}`}
-    >
-      {dots.map((_, i) => (
-        <div
-          key={i}
-          className="w-3 h-3 rounded-full"
-          style={{ backgroundColor: isDark ? '#0A0A0B' : '#FFFBF5' }}
-        />
-      ))}
-    </div>
-  )
-}
 
 export default function EventHighlights() {
   const ref = useRef(null)
@@ -163,224 +146,318 @@ export default function EventHighlights() {
           ))}
         </div>
 
-        {/* ─── Event Ticket ─── */}
+        {/* ─── Event Ticket (Cinema-style with scalloped edges) ─── */}
         <motion.div
-          initial={{ opacity: 0, y: 50, rotateX: 15 }}
-          animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.7, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-3xl mx-auto"
-          style={{ perspective: '1200px' }}
+          className="max-w-4xl mx-auto"
         >
           <TiltCard className="w-full">
-            <div
-              className="relative rounded-2xl overflow-hidden"
-              style={{
-                backgroundColor: isDark ? '#111113' : '#ffffff',
-                border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}`,
-                boxShadow: isDark
-                  ? '0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05)'
-                  : '0 25px 60px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.03)',
-              }}
-            >
-              <div className="flex flex-col md:flex-row">
-                {/* ─── Left: Main ticket body ─── */}
-                <div className="flex-1 p-6 md:p-8 relative">
-                  {/* Top accent bar */}
-                  <div className="absolute top-0 left-0 right-0 h-1 gradient-cta" />
+            {/* Outer wrapper — scalloped edges via SVG masks */}
+            <div className="relative">
+              {/* ── Left scalloped edge (punched holes) ── */}
+              <div className="absolute left-0 top-0 bottom-0 w-3 z-30 hidden md:block">
+                <svg width="12" height="100%" viewBox="0 0 12 100%" preserveAspectRatio="none" className="h-full">
+                  {Array.from({ length: 18 }).map((_, i) => (
+                    <circle
+                      key={`l-${i}`}
+                      cx="0"
+                      cy={`${((i + 0.5) / 18) * 100}%`}
+                      r="5"
+                      fill={isDark ? '#0A0A0B' : '#FFFBF5'}
+                    />
+                  ))}
+                </svg>
+              </div>
 
-                  {/* Event branding */}
-                  <div className="flex items-start justify-between mb-6 pt-2">
-                    <div>
-                      <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-1" style={{ color: '#FF4D00' }}>
-                        SVCE Freshers Fest 2026
-                      </p>
-                      <h3 className="font-heading font-bold text-2xl md:text-3xl" style={{ color: isDark ? '#ffffff' : '#1A1A2E' }}>
-                        PRECIOUS FIRST
-                      </h3>
+              {/* ── Right scalloped edge (punched holes) ── */}
+              <div className="absolute right-0 top-0 bottom-0 w-3 z-30 hidden md:block">
+                <svg width="12" height="100%" viewBox="0 0 12 100%" preserveAspectRatio="none" className="h-full">
+                  {Array.from({ length: 18 }).map((_, i) => (
+                    <circle
+                      key={`r-${i}`}
+                      cx="12"
+                      cy={`${((i + 0.5) / 18) * 100}%`}
+                      r="5"
+                      fill={isDark ? '#0A0A0B' : '#FFFBF5'}
+                    />
+                  ))}
+                </svg>
+              </div>
+
+              {/* ── Top scalloped edge (mobile) ── */}
+              <div className="absolute top-0 left-0 right-0 h-3 z-30 md:hidden">
+                <svg width="100%" height="12" preserveAspectRatio="none">
+                  {Array.from({ length: 30 }).map((_, i) => (
+                    <circle
+                      key={`t-${i}`}
+                      cx={`${((i + 0.5) / 30) * 100}%`}
+                      cy="0"
+                      r="5"
+                      fill={isDark ? '#0A0A0B' : '#FFFBF5'}
+                    />
+                  ))}
+                </svg>
+              </div>
+
+              {/* ── Bottom scalloped edge (mobile) ── */}
+              <div className="absolute bottom-0 left-0 right-0 h-3 z-30 md:hidden">
+                <svg width="100%" height="12" preserveAspectRatio="none">
+                  {Array.from({ length: 30 }).map((_, i) => (
+                    <circle
+                      key={`b-${i}`}
+                      cx={`${((i + 0.5) / 30) * 100}%`}
+                      cy="12"
+                      r="5"
+                      fill={isDark ? '#0A0A0B' : '#FFFBF5'}
+                    />
+                  ))}
+                </svg>
+              </div>
+
+              <div
+                className="relative rounded-2xl overflow-hidden"
+                style={{
+                  boxShadow: '0 30px 80px rgba(0,0,0,0.5), 0 0 40px rgba(139,92,246,0.08)',
+                }}
+              >
+                <div className="flex flex-col md:flex-row">
+                  {/* ═══════════ LEFT: Main Ticket Body ═══════════ */}
+                  <div className="flex-1 relative overflow-hidden" style={{ backgroundColor: '#0f0f12' }}>
+                    {/* Purple/amber gradient glow background */}
+                    <div className="absolute inset-0 pointer-events-none">
+                      <div className="absolute top-0 left-1/4 w-80 h-80 rounded-full blur-[100px]" style={{ backgroundColor: 'rgba(139,92,246,0.15)' }} />
+                      <div className="absolute bottom-0 right-1/4 w-60 h-60 rounded-full blur-[80px]" style={{ backgroundColor: 'rgba(245,158,11,0.08)' }} />
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-40 rounded-full blur-[120px]" style={{ backgroundColor: 'rgba(139,92,246,0.06)' }} />
                     </div>
+
+                    {/* Vertical side text */}
                     <div
-                      className="px-3 py-1 rounded-full text-xs font-bold"
-                      style={{
-                        backgroundColor: isDark ? 'rgba(255,77,0,0.15)' : 'rgba(255,77,0,0.1)',
-                        color: '#FF4D00',
-                      }}
+                      className="absolute left-0 top-0 bottom-0 w-8 hidden md:flex items-center justify-center"
+                      style={{ borderRight: '1px solid rgba(255,255,255,0.06)' }}
                     >
-                      ALL ACCESS
+                      <span
+                        className="text-[9px] font-bold tracking-[0.3em] uppercase whitespace-nowrap"
+                        style={{
+                          color: 'rgba(255,255,255,0.15)',
+                          writingMode: 'vertical-rl',
+                          transform: 'rotate(180deg)',
+                        }}
+                      >
+                        FRESHERS FEST &bull; APRIL 2026 &bull; TIRUPATI
+                      </span>
+                    </div>
+
+                    {/* Main content */}
+                    <div className="relative z-10 p-6 md:pl-12 md:pr-8 md:py-8">
+                      {/* Top bar */}
+                      <div className="flex items-center justify-between mb-6">
+                        <div>
+                          <p className="text-[10px] font-bold tracking-[0.25em] uppercase" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                            GDG &amp; SAC &bull; SVCE TIRUPATI
+                          </p>
+                          <p className="text-[9px] mt-0.5" style={{ color: 'rgba(255,255,255,0.25)' }}>
+                            Sri Venkateswara College of Engineering, Tirupati, AP
+                          </p>
+                        </div>
+                        <div
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[10px] font-bold tracking-[0.15em] uppercase"
+                          style={{
+                            border: '1px solid rgba(255,255,255,0.15)',
+                            color: 'rgba(255,255,255,0.7)',
+                          }}
+                        >
+                          <span style={{ color: '#F59E0B' }}>&#9654;</span>
+                          ALL EVENT PASS
+                        </div>
+                      </div>
+
+                      {/* Event name */}
+                      <div className="mb-6">
+                        <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-2" style={{ color: 'rgba(255,255,255,0.35)' }}>
+                          SVCE &bull; FRESHERS FEST
+                        </p>
+                        <h3 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95]" style={{ color: '#F59E0B' }}>
+                          Freshers
+                        </h3>
+                        <h3 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95]" style={{ color: '#ffffff' }}>
+                          Fest
+                        </h3>
+                      </div>
+
+                      {/* Large faded year behind */}
+                      <div
+                        className="absolute right-8 top-1/2 -translate-y-1/2 font-heading font-bold text-[120px] md:text-[160px] leading-none select-none pointer-events-none hidden md:block"
+                        style={{ color: 'rgba(255,255,255,0.04)' }}
+                      >
+                        2026
+                      </div>
+
+                      {/* Bottom details row */}
+                      <div className="flex flex-wrap items-end gap-6 mt-2">
+                        <div>
+                          <p className="text-[9px] font-semibold tracking-[0.2em] uppercase" style={{ color: 'rgba(255,255,255,0.3)' }}>Date</p>
+                          <p className="text-sm font-heading font-bold" style={{ color: '#ffffff' }}>Apr 10 &amp; 11, 2026</p>
+                        </div>
+                        <div>
+                          <p className="text-[9px] font-semibold tracking-[0.2em] uppercase" style={{ color: 'rgba(255,255,255,0.3)' }}>Venue</p>
+                          <p className="text-sm font-heading font-bold" style={{ color: '#ffffff' }}>SVCE Campus, Tirupati</p>
+                        </div>
+                        <div>
+                          <p className="text-[9px] font-semibold tracking-[0.2em] uppercase" style={{ color: 'rgba(255,255,255,0.3)' }}>Includes</p>
+                          <p className="text-sm font-heading font-bold" style={{ color: '#ffffff' }}>Everything</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Faded bottom year text */}
+                    <div
+                      className="absolute bottom-2 left-12 font-heading font-bold text-5xl select-none pointer-events-none hidden md:block"
+                      style={{ color: 'rgba(255,255,255,0.03)' }}
+                    >
+                      2026
                     </div>
                   </div>
 
-                  {/* Ticket details grid */}
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)' }}>
-                        <Calendar className="w-4 h-4" style={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.4)' }} />
-                      </div>
-                      <div>
-                        <p className="text-[10px] uppercase tracking-wider font-medium" style={{ color: isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.35)' }}>Date</p>
-                        <p className="text-sm font-semibold" style={{ color: isDark ? '#ffffff' : '#1A1A2E' }}>April 10–11, 2026</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)' }}>
-                        <Clock className="w-4 h-4" style={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.4)' }} />
-                      </div>
-                      <div>
-                        <p className="text-[10px] uppercase tracking-wider font-medium" style={{ color: isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.35)' }}>Time</p>
-                        <p className="text-sm font-semibold" style={{ color: isDark ? '#ffffff' : '#1A1A2E' }}>9:00 AM onwards</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)' }}>
-                        <MapPin className="w-4 h-4" style={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.4)' }} />
-                      </div>
-                      <div>
-                        <p className="text-[10px] uppercase tracking-wider font-medium" style={{ color: isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.35)' }}>Venue</p>
-                        <p className="text-sm font-semibold" style={{ color: isDark ? '#ffffff' : '#1A1A2E' }}>SVCE, Tirupati</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)' }}>
-                        <Users className="w-4 h-4" style={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.4)' }} />
-                      </div>
-                      <div>
-                        <p className="text-[10px] uppercase tracking-wider font-medium" style={{ color: isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.35)' }}>Capacity</p>
-                        <p className="text-sm font-semibold" style={{ color: isDark ? '#ffffff' : '#1A1A2E' }}>1,000+ Attendees</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* What's included */}
-                  <div
-                    className="rounded-xl p-4"
-                    style={{
-                      backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
-                      border: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`,
-                    }}
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.35)' }}>
-                      Includes
-                    </p>
-                    <p className="text-sm leading-relaxed" style={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.55)' }}>
-                      Workshops + Project Exhibition + Startup Showcase + Musical Evening + All Meals + Fun Stalls
-                    </p>
-                  </div>
-                </div>
-
-                {/* ─── Perforation divider ─── */}
-                <div className="relative hidden md:flex items-center justify-center" style={{ width: '1px' }}>
-                  {/* Top notch */}
-                  <div
-                    className="absolute -top-3 w-6 h-6 rounded-full z-30"
-                    style={{ backgroundColor: isDark ? '#0A0A0B' : '#FFFBF5' }}
-                  />
-                  {/* Bottom notch */}
-                  <div
-                    className="absolute -bottom-3 w-6 h-6 rounded-full z-30"
-                    style={{ backgroundColor: isDark ? '#0A0A0B' : '#FFFBF5' }}
-                  />
-                  {/* Dashed line */}
-                  <div
-                    className="absolute top-4 bottom-4 w-px"
-                    style={{
-                      backgroundImage: `repeating-linear-gradient(to bottom, ${isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)'} 0px, ${isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)'} 6px, transparent 6px, transparent 12px)`,
-                    }}
-                  />
-                  {/* Scissors icon */}
-                  <div className="absolute top-6 z-30" style={{ color: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)' }}>
-                    <Scissors className="w-3 h-3 rotate-90" />
-                  </div>
-                </div>
-
-                {/* Mobile horizontal divider */}
-                <div className="relative md:hidden flex items-center justify-center" style={{ height: '1px' }}>
-                  <div
-                    className="absolute -left-3 w-6 h-6 rounded-full z-30"
-                    style={{ backgroundColor: isDark ? '#0A0A0B' : '#FFFBF5' }}
-                  />
-                  <div
-                    className="absolute -right-3 w-6 h-6 rounded-full z-30"
-                    style={{ backgroundColor: isDark ? '#0A0A0B' : '#FFFBF5' }}
-                  />
-                  <div
-                    className="absolute left-4 right-4 h-px"
-                    style={{
-                      backgroundImage: `repeating-linear-gradient(to right, ${isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)'} 0px, ${isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)'} 6px, transparent 6px, transparent 12px)`,
-                    }}
-                  />
-                </div>
-
-                {/* ─── Right: Price stub ─── */}
-                <div className="w-full md:w-56 p-6 md:p-8 flex flex-col items-center justify-center text-center relative">
-                  {/* Top accent bar (mobile) */}
-                  <div className="absolute top-0 left-0 right-0 h-1 gradient-cta md:hidden" />
-
-                  <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.35)' }}>
-                    Entry Price
-                  </p>
-
-                  <div className="mb-1">
-                    <span className="font-heading font-bold text-5xl md:text-6xl gradient-text">
-                      &#8377;200
-                    </span>
-                  </div>
-                  <p className="text-xs mb-1" style={{ color: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)' }}>
-                    per person
-                  </p>
-                  <p className="text-[10px] mb-5" style={{ color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)' }}>
-                    Hackathon: +&#8377;100 add-on
-                  </p>
-
-                  {/* QR placeholder */}
-                  <div
-                    className="w-20 h-20 rounded-lg mb-4 flex items-center justify-center"
-                    style={{
-                      backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.03)',
-                      border: `1px dashed ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
-                    }}
-                  >
-                    <div className="grid grid-cols-4 gap-[2px]">
-                      {Array.from({ length: 16 }).map((_, i) => (
+                  {/* ═══════════ Perforation tear-line ═══════════ */}
+                  <div className="relative hidden md:flex items-center justify-center" style={{ width: '2px' }}>
+                    {/* Large semicircle notch — top */}
+                    <div
+                      className="absolute -top-4 w-8 h-8 rounded-full z-30"
+                      style={{ backgroundColor: isDark ? '#0A0A0B' : '#FFFBF5' }}
+                    />
+                    {/* Large semicircle notch — bottom */}
+                    <div
+                      className="absolute -bottom-4 w-8 h-8 rounded-full z-30"
+                      style={{ backgroundColor: isDark ? '#0A0A0B' : '#FFFBF5' }}
+                    />
+                    {/* Dotted perforation line */}
+                    <div className="absolute top-6 bottom-6 flex flex-col items-center justify-between">
+                      {Array.from({ length: 20 }).map((_, i) => (
                         <div
                           key={i}
-                          className="w-3 h-3 rounded-[1px]"
-                          style={{
-                            backgroundColor: [0, 1, 3, 4, 5, 7, 8, 10, 11, 12, 15].includes(i)
-                              ? (isDark ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.2)')
-                              : 'transparent',
-                          }}
+                          className="w-[3px] h-[3px] rounded-full"
+                          style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}
                         />
                       ))}
                     </div>
+                    {/* Scissors icon positioned on the line */}
+                    <div className="absolute top-8 z-40 bg-[#0f0f12] px-0.5 py-1 rounded-sm">
+                      <Scissors className="w-3.5 h-3.5 rotate-90" style={{ color: 'rgba(255,255,255,0.35)' }} />
+                    </div>
                   </div>
 
-                  <button
-                    onClick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-full gradient-cta text-white font-heading font-semibold text-sm hover:opacity-90 transition-all cursor-pointer group w-full justify-center"
+                  {/* Mobile horizontal perforation */}
+                  <div className="relative md:hidden flex items-center justify-center py-0" style={{ backgroundColor: '#0f0f12' }}>
+                    {/* Left notch */}
+                    <div
+                      className="absolute -left-4 w-8 h-8 rounded-full z-30"
+                      style={{ backgroundColor: isDark ? '#0A0A0B' : '#FFFBF5' }}
+                    />
+                    {/* Right notch */}
+                    <div
+                      className="absolute -right-4 w-8 h-8 rounded-full z-30"
+                      style={{ backgroundColor: isDark ? '#0A0A0B' : '#FFFBF5' }}
+                    />
+                    {/* Dotted line */}
+                    <div className="flex items-center justify-between w-full px-8">
+                      {Array.from({ length: 30 }).map((_, i) => (
+                        <div
+                          key={i}
+                          className="w-[3px] h-[3px] rounded-full"
+                          style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}
+                        />
+                      ))}
+                    </div>
+                    {/* Scissors */}
+                    <div className="absolute left-10 z-40 bg-[#0f0f12] px-1 py-0.5 rounded-sm">
+                      <Scissors className="w-3.5 h-3.5" style={{ color: 'rgba(255,255,255,0.35)' }} />
+                    </div>
+                  </div>
+
+                  {/* ═══════════ RIGHT: Tear-off Stub ═══════════ */}
+                  <div
+                    className="w-full md:w-56 relative overflow-hidden flex flex-col items-center justify-center text-center p-6 md:p-6"
+                    style={{ backgroundColor: '#0f0f12' }}
                   >
-                    Register Now
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                  </button>
+                    {/* Subtle glow */}
+                    <div className="absolute top-0 right-0 w-40 h-40 rounded-full blur-[60px] pointer-events-none" style={{ backgroundColor: 'rgba(139,92,246,0.08)' }} />
 
-                  <p className="text-[10px] mt-3" style={{ color: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.25)' }}>
-                    Powered by Ticket9
-                  </p>
+                    {/* ALL EVENT PASS badge */}
+                    <div
+                      className="px-3 py-1 rounded text-[9px] font-bold tracking-[0.2em] uppercase mb-4 relative z-10"
+                      style={{ backgroundColor: '#F59E0B', color: '#0f0f12' }}
+                    >
+                      ALL EVENT PASS
+                    </div>
+
+                    {/* Event name */}
+                    <p className="font-heading font-bold text-sm mb-0.5 relative z-10" style={{ color: '#ffffff' }}>SVCE</p>
+                    <p className="font-heading font-bold text-sm mb-0.5 relative z-10" style={{ color: '#ffffff' }}>Freshers Fest</p>
+                    <p className="font-heading font-bold text-3xl mb-4 relative z-10" style={{ color: '#F59E0B' }}>2026</p>
+
+                    {/* QR code placeholder */}
+                    <div
+                      className="w-24 h-24 rounded-lg mb-2 flex items-center justify-center relative z-10"
+                      style={{
+                        backgroundColor: '#ffffff',
+                        padding: '6px',
+                      }}
+                    >
+                      <div className="w-full h-full grid grid-cols-7 gap-[1px]">
+                        {Array.from({ length: 49 }).map((_, i) => {
+                          const pattern = [0,1,2,3,4,5,6,7,13,14,20,21,27,28,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,8,9,10,11,12,15,16,19,22,23,26,29,30,33]
+                          return (
+                            <div
+                              key={i}
+                              className="rounded-[0.5px]"
+                              style={{
+                                backgroundColor: pattern.includes(i) ? '#0f0f12' : '#e5e5e5',
+                              }}
+                            />
+                          )
+                        })}
+                      </div>
+                    </div>
+                    <p className="text-[8px] font-semibold tracking-[0.2em] uppercase mb-5 relative z-10" style={{ color: 'rgba(255,255,255,0.3)' }}>
+                      SCAN TO VERIFY
+                    </p>
+
+                    {/* Separator line */}
+                    <div className="w-full h-px mb-4 relative z-10" style={{ backgroundColor: 'rgba(255,255,255,0.08)' }} />
+
+                    {/* Bottom info grid */}
+                    <div className="w-full grid grid-cols-2 gap-3 text-left mb-3 relative z-10">
+                      <div>
+                        <p className="text-[8px] font-semibold tracking-[0.15em] uppercase" style={{ color: 'rgba(255,255,255,0.3)' }}>Date</p>
+                        <p className="text-xs font-heading font-bold" style={{ color: '#ffffff' }}>Apr 10 &amp; 11</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-[8px] font-semibold tracking-[0.15em] uppercase" style={{ color: 'rgba(255,255,255,0.3)' }}>Entry</p>
+                        <p className="text-xs font-heading font-bold" style={{ color: '#F59E0B' }}>&#8377;200</p>
+                      </div>
+                      <div>
+                        <p className="text-[8px] font-semibold tracking-[0.15em] uppercase" style={{ color: 'rgba(255,255,255,0.3)' }}>Hackathon</p>
+                        <p className="text-xs font-heading font-bold" style={{ color: '#F59E0B' }}>+&#8377;100</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-[8px] font-semibold tracking-[0.15em] uppercase" style={{ color: 'rgba(255,255,255,0.3)' }}>Platform</p>
+                        <p className="text-xs font-heading font-bold" style={{ color: '#ffffff' }}>Ticket9</p>
+                      </div>
+                    </div>
+
+                    {/* Register CTA */}
+                    <button
+                      onClick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}
+                      className="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-heading font-semibold hover:opacity-90 transition-all cursor-pointer group w-full justify-center mt-1 relative z-10"
+                      style={{ backgroundColor: '#F59E0B', color: '#0f0f12' }}
+                    >
+                      Register Now
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-
-              {/* Bottom info strip */}
-              <div
-                className="px-6 md:px-8 py-3 flex flex-col sm:flex-row items-center justify-between gap-2"
-                style={{
-                  backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
-                  borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`,
-                }}
-              >
-                <p className="text-[10px] tracking-wider" style={{ color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)' }}>
-                  Register &#8594; Pay via Ticket9 &#8594; QR code via WhatsApp &amp; Email &#8594; Show at gate
-                </p>
-                <p className="text-[10px] font-mono tracking-wider" style={{ color: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)' }}>
-                  SVCE-FF-2026-XXXX
-                </p>
               </div>
             </div>
           </TiltCard>
